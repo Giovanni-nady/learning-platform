@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, Pressable } from 'react-native'
 import React, { useContext } from 'react'
 import { AuthContext } from '../Context/AuthContext'
 
@@ -10,9 +10,11 @@ export default function WelcomeHeader() {
         <Text>Hello,</Text>
          <Text style={{fontSize:20,fontWeight:'bold'}}>{userData?.name}</Text>
         </View>
+      <Pressable onPress={()=> setUserData(null)}>
         <Image source={{uri:userData?.picture}}
         style={{width:40,height:40,borderRadius:100}}
         />
+        </Pressable>
     
     </View>
   )
