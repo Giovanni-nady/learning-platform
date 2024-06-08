@@ -5,41 +5,36 @@ import { useEffect, useState } from 'react';
 // import Services from './App/Shared/Services';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeNavigation from './App/navigations/HomeNavigation.js';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './App/screens/Home/HomeScreen.tsx';
+import Login from './App/screens/Auth/Login.jsx';
+const Stack = createNativeStackNavigator();
 
 export default function App() {
 
-  const [userData, setUserData] = useState(null);
-  // useEffect(() => {
-  //   Services.getUserAuth().then(resp => {
-  //     console.log(resp);
-  //     if (resp) {
-  //       setUserData(resp)
-  //     }
-  //     else {
-  //       setUserData(null)
-  //     }
-  //   })
-  // }, [])
   return (
-    <View style={styles.container}>
-      <AuthContext.Provider
-        value={{ userData, setUserData }}>
-        {/* {userData? */}
-        <NavigationContainer>
-          <HomeNavigation />
-        </NavigationContainer>
-        {/* :<Login/>} */}
+    <AuthProvider
+      value={{}}>
+      <Layout></Layout>
+    </AuthProvider>
 
-      </AuthContext.Provider>
-
-    </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F6F8FC',
+export const Layout = () => {
 
-  },
-});
+  const { authState, inLogout } = useAuth()
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        {authState?.authenticated ?
+          <Stack.Screen name="Home" component={HomeScreen}/>
+            :
+          <Stack.Screen name="Login" component={Login}/>
+        }
+      </Stack.Navigator>
+      {/* <HomeNavigation /> */}
+    </NavigationContainer>
+  )
+}

@@ -16,6 +16,7 @@
     "@react-navigation/native-stack": "^6.9.12",
     "@types/react": "~18.2.79",
     "apisauce": "^3.0.0",
+    "axios": "^1.7.2",
     "expo": "^51.0.9",
     "expo-application": "~5.9.1",
     "expo-auth-session": "~5.5.2",
@@ -35,7 +36,8 @@
     "react-native-svg": "15.2.0",
     "react-native-webview": "13.8.6",
     "react-native-youtube-iframe": "^2.2.2",
-    "typescript": "~5.3.3"
+    "typescript": "~5.3.3",
+    "expo-secure-store": "~13.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",
